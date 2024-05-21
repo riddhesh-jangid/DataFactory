@@ -1,5 +1,5 @@
 {
-	"name": "LatestOne_copy1",
+	"name": "LatestOneGet",
 	"properties": {
 		"activities": [
 			{
@@ -20,11 +20,7 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"childItems",
-						"exists",
-						"itemName",
-						"itemType",
-						"lastModified"
+						"childItems"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
@@ -36,8 +32,8 @@
 				}
 			},
 			{
-				"name": "SetNumberOfFiles",
-				"type": "SetVariable",
+				"name": "SetLatestFile",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "GetFiles",
@@ -46,17 +42,47 @@
 						]
 					}
 				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "NumberOfFiles",
-					"value": {
-						"value": "@length(activity('GetFiles').output.childItems)",
+					"items": {
+						"value": "@activity('GetFiles').output.childItems.name",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "GetFileInfo",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "TXTFile",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
