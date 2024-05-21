@@ -99,7 +99,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(activity('GetFileInfo').lastModified, variables('LatestModifiedDate'))\n",
+									"value": "@greater(activity('GetFileInfo').output.lastModified, variables('LatestModifiedDate'))\n",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
