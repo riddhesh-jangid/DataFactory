@@ -1,5 +1,13 @@
 {
 	"name": "RiddDataFactory",
+	"properties": {
+		"globalParameters": {
+			"storage_name": {
+				"type": "string",
+				"value": "riddheshstg"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
