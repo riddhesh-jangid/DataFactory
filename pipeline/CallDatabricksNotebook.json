@@ -17,8 +17,8 @@
 				"typeProperties": {
 					"notebookPath": "/Users/riddhesh710@gmail.com/ADF/callFromADF",
 					"baseParameters": {
-						"ID": "101",
-						"NAME": "Jangid"
+						"id": "101",
+						"name": "Jangid"
 					}
 				},
 				"linkedServiceName": {
