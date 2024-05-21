@@ -84,6 +84,44 @@
 									"type": "BinaryReadSettings"
 								}
 							}
+						},
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "GetFileInfo",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(activity('GetFileInfo').lastModified, variables('LatestModifiedDate'))\n",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "SetLatestDate",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "LatestModifiedDate",
+											"value": {
+												"value": "@activity('GetFileInfo').output.lastModified",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
 						}
 					]
 				}
@@ -92,6 +130,10 @@
 		"variables": {
 			"NumberOfFiles": {
 				"type": "Integer"
+			},
+			"LatestModifiedDate": {
+				"type": "String",
+				"defaultValue": "1900-01-01 00:00:00"
 			}
 		},
 		"annotations": []
