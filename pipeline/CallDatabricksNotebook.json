@@ -15,7 +15,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/riddhesh710@gmail.com/ADF/callFromADF"
+					"notebookPath": "/Users/riddhesh710@gmail.com/ADF/callFromADF",
+					"baseParameters": {
+						"ID": "101",
+						"NAME": "Jangid"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Databricks",
