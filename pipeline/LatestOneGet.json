@@ -45,7 +45,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('GetFiles').output.childItems.name",
+						"value": "@activity('GetFiles').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
@@ -67,7 +67,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@item()",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
