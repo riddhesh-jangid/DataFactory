@@ -1,0 +1,9 @@
+{
+	"name": "RiddDataFactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "266f02ab-b32c-457b-be82-43ede119081b",
+		"tenantId": "2275b063-9a12-4138-8e86-fc52581cbaec"
+	}
+}
